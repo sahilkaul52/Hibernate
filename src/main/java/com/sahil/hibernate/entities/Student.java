@@ -5,13 +5,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Student 
 {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "custom_gen")
+	@SequenceGenerator(name = "custom_gen", sequenceName = "cust_seq", initialValue = 1, allocationSize = 1) //allocationSize matlab kitne amount se next sequence ko badhaana hai
 	private int userId;
 	
     @Column(name="NAME", length=50)
