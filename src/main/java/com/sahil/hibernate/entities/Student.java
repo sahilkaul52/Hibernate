@@ -12,8 +12,7 @@ public class Student
 {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "custom_gen")
-	@SequenceGenerator(name = "custom_gen", sequenceName = "cust_seq", initialValue = 1, allocationSize = 1) //allocationSize matlab kitne amount se next sequence ko badhaana hai
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
 	
     @Column(name="NAME", length=50)
@@ -26,10 +25,6 @@ public class Student
 	
 	public int getUserId() {
 		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public String getName() {

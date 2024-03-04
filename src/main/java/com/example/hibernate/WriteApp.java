@@ -30,7 +30,6 @@ public class WriteApp {
 		student.setName("Sum");
 		student.setOrigin("kashmir");
 		student.setEmail("ks@hotmail.com");
-		student.setUserId(1);
 
 		Student student2 = new Student();
 		student2.setName("Priti");
