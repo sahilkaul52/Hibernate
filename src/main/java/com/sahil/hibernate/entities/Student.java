@@ -27,6 +27,12 @@ public class Student
 		return userId;
 	}
 
+	public void setUserId(Integer id)
+	{
+		this.userId=id;
+	}
+
+
 	public String getName() {
 		return name;
 	}

@@ -1,61 +1,52 @@
 package com.example.hibernate;
 
-import java.lang.module.Configuration;
-
+import com.example.utils.HibernateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.bytecode.internal.bytebuddy.PrivateAccessorException;
 
 import com.sahil.hibernate.entities.Student;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 
 public class WriteApp {
 
 	public static void main(String[] args) {
 
-		org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
+		SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
 
-		configuration.configure();
+		if (sessionFactory != null) {
 
-		configuration.addAnnotatedClass(Student.class);
+			Session session = sessionFactory.openSession();
 
-		SessionFactory sessionFactory = configuration.buildSessionFactory();
+			Student student = new Student();
+			student.setName("Sum");
+			student.setOrigin("kashmir");
+			student.setEmail("ks@hotmail.com");
 
-		Session session = sessionFactory.openSession();
+			Student student2 = new Student();
+			student2.setName("Priti");
+			student2.setOrigin("jammu");
+			student2.setEmail("pb@gmail.com");
 
-		Student student = new Student();
-		student.setName("Sum");
-		student.setOrigin("kashmir");
-		student.setEmail("ks@hotmail.com");
 
-		Student student2 = new Student();
-		student2.setName("Priti");
-		student2.setOrigin("jammu");
-		student2.setEmail("pb@gmail.com");
+			session.beginTransaction();
 
-		
-		 session.beginTransaction();
-		 
-		 session.persist(student);
-		  
-		 session.getTransaction().commit();
-		 
-		  session.close();
-		 
+			session.persist(student);
 
-		Session session2 = sessionFactory.openSession();
+			session.getTransaction().commit();
 
-		session2.beginTransaction();
+			session.close();
 
-		session2.persist(student2);
 
-		session2.getTransaction().commit();
+			Session session2 = sessionFactory.openSession();
 
-		session2.close();
+			session2.beginTransaction();
 
+			session2.persist(student2);
+
+			session2.getTransaction().commit();
+
+			session2.close();
+
+		}
 	}
 
 }
